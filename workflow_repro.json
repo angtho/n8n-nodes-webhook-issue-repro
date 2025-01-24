@@ -1,0 +1,112 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        0
+      ],
+      "id": "59aa34e7-8bff-448a-a8ae-65b0d75818fb",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "subject": "Approve or deny this request",
+        "message": "Details here",
+        "actions": {
+          "action": [
+            {
+              "name": "Approve"
+            },
+            {
+              "name": "Decline"
+            }
+          ]
+        }
+      },
+      "type": "CUSTOM.webhookPathChoice",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "aff71bde-0365-416a-97d2-0a6c5708b4c7",
+      "name": "Webhook Path Choice",
+      "webhookId": "b147dfbb-76a1-44af-94a1-176f6516cb45"
+    },
+    {
+      "parameters": {
+        "customerId": "1",
+        "message": "Approved"
+      },
+      "type": "n8n-nodes-base.n8nTrainingCustomerMessenger",
+      "typeVersion": 1,
+      "position": [
+        320,
+        -80
+      ],
+      "id": "e16f0ad4-d3d3-4240-8a13-c1d459fd12a2",
+      "name": "Example Action for Approve"
+    },
+    {
+      "parameters": {
+        "customerId": "1",
+        "message": "Denied"
+      },
+      "type": "n8n-nodes-base.n8nTrainingCustomerMessenger",
+      "typeVersion": 1,
+      "position": [
+        320,
+        140
+      ],
+      "id": "063a98fe-9924-4d15-9b5f-84ec3b6bafa3",
+      "name": "Example Action for Decline"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Webhook Path Choice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Path Choice": {
+      "main": [
+        [
+          {
+            "node": "Example Action for Approve",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Example Action for Decline",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "885ffe12-4fa3-4002-9f3a-7f6bc723c208",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "985599f97f3f583b29b29651df709166d78c16a440ce0b2ce69ee0ed2fcec199"
+  },
+  "id": "DvDVFZnij42mZ8C6",
+  "tags": []
+}
